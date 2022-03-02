@@ -2,12 +2,14 @@ if(process.env.NODE_ENV!=='production')
 {
     require('dotenv').config();
 }
+
 const express= require("express");
 const Cors= require("cors")
 const app = express();
 const port = process.env.PORT || 8001;
 app.use(express.json());
 app.use(Cors());
+const http = require('http').createServer(app);
 
 app.get('/', (req, res) => res.status(200).send("Hello bajaj"));
 
@@ -27,4 +29,4 @@ app.post('/bfhl', (req, res) => {
     })
 })
 
-app.listen(port, () => console.log(`listening :${port}`));
+http.listen(port, () => console.log(`listening :${port}`));
